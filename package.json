@@ -1,7 +1,6 @@
 {
   "name": "web3-tut",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +11,7 @@
     "clickhouse": "^2.4.2",
     "dot-env": "^0.0.1",
     "dotenv": "^14.2.0",
+    "optionator": "^0.9.1",
     "web3": "^1.7.0"
   },
   "devDependencies": {
@@ -26,5 +26,14 @@
     "eslint-plugin-react": "^7.28.0",
     "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.5.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ryadavDeqode/ERC20-TOKENS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ryadavDeqode/ERC20-TOKENS/issues"
+  },
+  "homepage": "https://github.com/ryadavDeqode/ERC20-TOKENS#readme",
+  "description": ""
 }
