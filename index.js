@@ -37,7 +37,9 @@ async function isERC20(contractAdd) {
   }
   let checker;
   await web3.eth.getCode(contractAdd,(err,val) => {
-    if(val.includes(allowanceByte)){
+    if(val.includes(balanceOfByte) && val.includes(totalSupplyByte) 
+    && val.includes(transferByte) && val.includes(transferFromByte)
+    && val.includes(approveByte) && val.includes(allowanceByte)){
       checker = true;
     }
     else{
@@ -51,14 +53,7 @@ async function returnContractAddress(txn) {
     await web3.eth.getTransactionReceipt(txn,(err,res) => {
       isIt = res.contractAddress;
     })
-    if(isIt != null){
-        if(isERC20(isIt)){
-            return isIt;
-        }
-    }
-    else{
-        return null;
-    }
+    return await isIt;
   }
 
 
@@ -77,7 +72,12 @@ async function perform(start,end){
       for(let i of val.transactions){
         returnContractAddress(i).then((val) => {
           if(val != null){
-            console.log(val);
+            isERC20(val).then((res) => {
+              if(res){
+                console.log(val);
+                console.log(i);
+              }
+            })
           }
         });
       }
@@ -85,4 +85,4 @@ async function perform(start,end){
   }
 }
 
-perform(3978340,4634748);
+perform(1,4634748);
