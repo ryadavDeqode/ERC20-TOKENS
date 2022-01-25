@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "clickhouse": "^2.4.2",
     "dot-env": "^0.0.1",
     "dotenv": "^14.2.0",
     "web3": "^1.7.0"

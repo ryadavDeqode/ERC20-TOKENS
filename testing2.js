@@ -31,6 +31,10 @@ const transferFromByte = web3.utils.sha3("transferFrom(address,address,uint256)"
 const approveByte = web3.utils.sha3("approve(address,uint256)").substr(2,8);
 const allowanceByte = web3.utils.sha3("allowance(address,address)").substr(2,8);
 
+
+
+// console.log(data);
+
 async function isERC20(contractAdd) {
   if(contractAdd == null){
     return false;
@@ -61,10 +65,43 @@ async function returnContractAddress(txn) {
     }
   }
 
+// returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then((val) => {
+//   if(val != null){
+//     isERC20(val).then(console.log(val));
+//   }
+// })
 
-// returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
+// getERC20ContractAdd('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190');
 
+// returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then((val) => {
+//   if(isERC20(val)){
+//     console.log(val);
+//   }
+// })
+let fin;
+async function getAdd(txn) {
 
-for(let i = 3978340; i <= 4634748;i++){
-  
+  fin = await returnContractAddress(txn).then((val) => {
+    if(val == null){
+      return null;
+    }
+    else if(isERC20(val)){
+      return val;
+    }
+    else {
+      return null
+    }
+  })
+  return await fin;
 }
+
+// getAdd('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then((res) => {
+//   if(res != null){
+//     console.log(val);
+//   }
+//   else{
+    
+//   }
+// })
+
+returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
