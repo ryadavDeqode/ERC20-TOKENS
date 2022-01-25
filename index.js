@@ -65,6 +65,24 @@ async function returnContractAddress(txn) {
 // returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
 
 
-for(let i = 3978340; i <= 4634748;i++){
-  
+// for(let i = 3978340; i <= 4634748;i++){
+//   web3.eth.getBlock(i).then(console.log);
+// }
+
+// web3.eth.getBlock(3978340).then(console.log);
+
+async function perform(start,end){
+  for(let st = start; st <= end; st++){
+    await web3.eth.getBlock(st).then((val) => {
+      for(let i of val.transactions){
+        returnContractAddress(i).then((val) => {
+          if(val != null){
+            console.log(val);
+          }
+        });
+      }
+    });
+  }
 }
+
+perform(3978340,4634748);
