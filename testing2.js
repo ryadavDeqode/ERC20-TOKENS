@@ -104,4 +104,6 @@ async function getAdd(txn) {
 //   }
 // })
 
-returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
+// returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
+
+web3.eth.getTransactionReceipt('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log);

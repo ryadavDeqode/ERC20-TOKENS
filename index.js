@@ -51,25 +51,20 @@ async function isERC20(contractAdd) {
 
 async function returnContractAddress(txn) {
     await web3.eth.getTransactionReceipt(txn,(err,res) => {
-      isIt = res.contractAddress;
+      // isIt = res.contractAddress;
+      if("contractAddress" in res){
+        isIt = res.contractAddress;
+      }
     })
     return await isIt;
   }
 
 
-// returnContractAddress('0x2f1c5c2b44f771e942a8506148e256f94f1a464babc938ae0690c6e34cd79190').then(console.log)
-
-
-// for(let i = 3978340; i <= 4634748;i++){
-//   web3.eth.getBlock(i).then(console.log);
-// }
-
-// web3.eth.getBlock(3978340).then(console.log);
-
 async function perform(start,end){
   for(let st = start; st <= end; st++){
     await web3.eth.getBlock(st).then((val) => {
       for(let i of val.transactions){
+        // console.log(i);
         returnContractAddress(i).then((val) => {
           if(val != null){
             isERC20(val).then((res) => {
@@ -85,4 +80,4 @@ async function perform(start,end){
   }
 }
 
-perform(1,4634748);
+perform(4630000,5000000);
